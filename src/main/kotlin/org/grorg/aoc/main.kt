@@ -11,4 +11,6 @@ fun main() {
     println("day 2.2 : ${solveDay2p2(getResourceAsText("/day2").split("\n"))}")
     println("day 3.1 : ${solveDay3p1(getResourceAsText("/day3").split("\n"))}")
     println("day 3.2 : ${solveDay3p2(getResourceAsText("/day3").split("\n"))}")
+    println("day 4.1 : ${solveDay4p1(getResourceAsText("/day4").split("\n"))}")
+    println("day 4.2 : ${solveDay4p2(getResourceAsText("/day4").split("\n"))}")
 }
