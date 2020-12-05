@@ -1,10 +1,6 @@
 package org.grorg.aoc
 
-import java.lang.Exception
-
-const val TARGET = 2020;
-
-class SolutionNotFound: Exception("no solution have been found")
+const val TARGET = 2020
 
 private fun sortedInput(input: List<String>) = input
     .map { it.toLong() }
@@ -16,7 +12,7 @@ fun solveDay1p1(input: List<String>): Long {
     return sortedInputs
         .find { sortedInputs.contains(TARGET - it) }
         ?.let { it * (TARGET - it) }
-        ?: throw SolutionNotFound()
+        ?: throw NotFoundSolutionException()
 }
 
 fun solveDay1p2(input: List<String>): Long {
@@ -31,5 +27,5 @@ fun solveDay1p2(input: List<String>): Long {
                 ?.let { (TARGET - j) * it * (j - it) }
         }
         .find { it != null }
-        ?: throw SolutionNotFound()
+        ?: throw NotFoundSolutionException()
 }

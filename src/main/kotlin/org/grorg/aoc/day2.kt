@@ -4,6 +4,7 @@ data class Entry(val target: Char, val min: Int, val max: Int, val password: Str
 
 fun solveDay2p1(input: List<String>): Int {
     return input
+        .asSequence()
         .map(::toEntry)
         .map { entry -> Pair(entry, entry.password.count { it == entry.target }) }
         .filter { (entry, occurrences) ->
@@ -22,6 +23,7 @@ fun toEntry(input: String): Entry {
 
 fun solveDay2p2(input: List<String>): Int {
     return input
+        .asSequence()
         .map(::toEntry)
         .filter(::oneOccurrenceAtOnePositionNotBoth)
         .count()

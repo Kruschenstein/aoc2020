@@ -5,20 +5,23 @@ fun solveDay4p1(input: List<String>): Int {
         .count()
 }
 
+fun inlinePassportEntry(acc: MutableList<String>, line: String): MutableList<String> {
+    if (line.isEmpty()) {
+        acc.add("")
+    } else {
+        acc[acc.lastIndex] = "${acc.last()} $line"
+    }
+    return acc
+}
+
 fun getPasswordsWithRequiredLine(input: List<String>): List<String> {
     val requiredFields = listOf("byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid")
-    val passports = input
-        .fold(mutableListOf("")) { acc, line ->
-            if (line.isEmpty()) {
-                acc.add("")
-            } else {
-                acc[acc.lastIndex] = "${acc.last()} $line"
-            }
-            acc
-        }
+    val passports = input.fold(mutableListOf(""), ::inlinePassportEntry)
+
     return passports
         .filter { passport ->
             requiredFields
+                .asSequence()
                 .map { field -> "$field:" }
                 .all { passport.contains(it) }
         }
