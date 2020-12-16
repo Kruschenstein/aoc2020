@@ -3,10 +3,12 @@ package org.grorg.aoc
 import kotlin.math.abs
 
 fun solveDay11p1(input: List<String>): Int {
-    var grid = input
+    val grid = input.toTypedArray()
+    val newGrid = Array(input.size) { "" }
     while (true) {
-        val newGrid = MutableList(input.size) { "" }
+        // val newGrid = mutableListOf<String>()
         for (y in input.indices) {
+            val lineBuilder = StringBuilder()
             for (x in input[y].indices) {
                 val cell = grid[y][x]
                 val neighbors = sequenceOf(-1, 0, 1)
@@ -16,18 +18,21 @@ fun solveDay11p1(input: List<String>): Int {
                     .filter { it == '#' }
                     .count()
                 if (cell == '#' && neighbors > 3) {
-                    newGrid[y] = newGrid[y] + 'L'
+                    lineBuilder.append('L')
                 } else if (cell == 'L' && neighbors == 0) {
-                    newGrid[y] = newGrid[y] + '#'
+                    lineBuilder.append('#')
                 } else {
-                    newGrid[y] = newGrid[y] + cell
+                    lineBuilder.append(cell)
                 }
             }
+            newGrid[y] = lineBuilder.toString()
         }
-        if (newGrid == grid) {
+        if (newGrid.contentEquals(grid)) {
             break
         } else {
-            grid = newGrid
+            for (i in newGrid.indices) {
+                grid[i] = newGrid[i]
+            }
         }
     }
 
@@ -43,10 +48,12 @@ fun solveDay11p2(input: List<String>): Int {
         .flatMap { a -> sequenceOf(-1, 0, 1).map { b -> Pair(a, b) } }
         .filter { it != Pair(0, 0) }
 
-    var grid = input
+    val grid = input.toTypedArray()
+    val newGrid = Array(input.size) { "" }
+
     while (true) {
-        val newGrid = MutableList(height) { "" }
         for (y in input.indices) {
+            val lineBuilder = StringBuilder()
             for (x in input[y].indices) {
                 val cell = grid[y][x]
                 val neighbors = neighborSequence
@@ -60,18 +67,22 @@ fun solveDay11p2(input: List<String>): Int {
                     .count()
 
                 if (cell == '#' && neighbors > 4) {
-                    newGrid[y] = newGrid[y] + 'L'
+                    lineBuilder.append('L')
                 } else if (cell == 'L' && neighbors == 0) {
-                    newGrid[y] = newGrid[y] + '#'
+                    lineBuilder.append('#')
                 } else {
-                    newGrid[y] = newGrid[y] + cell
+                    lineBuilder.append(cell)
                 }
             }
+            newGrid[y] = lineBuilder.toString()
         }
-        if (newGrid == grid) {
+        if (newGrid.contentEquals(grid)) {
             break
         } else {
-            grid = newGrid
+            for (i in newGrid.indices) {
+                grid[i] = newGrid[i]
+            }
+
         }
     }
 
