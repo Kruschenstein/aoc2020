@@ -50,4 +50,6 @@ fun main() {
     printlnResultAndDuration("day 19.1") { solveDay19p2(getResourceAsText("/day19")) }
     printlnResultAndDuration("day 20.1") { solveDay20p1(getResourceAsText("/day20")) }
     printlnResultAndDuration("day 20.2") { solveDay20p2(getResourceAsText("/day20")) }
+    printlnResultAndDuration("day 21.1") { solveDay21p1(getResourceAsText("/day21")) }
+    printlnResultAndDuration("day 21.2") { solveDay21p2(getResourceAsText("/day21")) }
 }
